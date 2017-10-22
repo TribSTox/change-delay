@@ -63,7 +63,7 @@
         }
         
         // Handle the highlighting feature.
-        if ( settings.highlight ) this.on('focus.selection', function() { this.select(); });
+        if ( settings.highlight ) this.on('focus.selection', function() { try{this.select();}catch(e){} });
         
         return this.each(function(index) { init(this, $(this)); });
     }
