@@ -37,10 +37,10 @@
 		<script src="jquery.change-delay.js"></script>
 		<script>
 			$(function(){
-				$('#test1').delay(function(event, value){
+				$('#test1').changeDelay(function(event, value){
 					$('<li>' + value + '</li>').appendTo('#values1');
 				});
-				$('#test2').delay(function(event, value){
+				$('#test2').changeDelay(function(event, value){
 					$('<li>' + value + '</li>').appendTo('#values2');
 				});
 			});
