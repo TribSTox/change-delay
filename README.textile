@@ -1,3 +1,3 @@
 h1. Change-Delay.js
 
-A tiny JavaScript tool for monitoring text fields for modification.
+A tiny jquery plugin for monitoring text fields/ contenteditable containers for modification.
