@@ -16,19 +16,23 @@
         }, options);
         
         function init(element, self) {
+            var tag_type = 'input';
             // Only handle contenteditable, <input type="text"> and <textarea> tags.
-            if ( !element.attributes.contenteditable && element.type.toUpperCase() != "TEXT" && element.nodeName.toUpperCase() != "TEXTAREA" ) return;
+            if ( (!element.type && element.attributes.contenteditable) || (element.type.toUpperCase() != "TEXT" && element.nodeName.toUpperCase() != "TEXTAREA") ) tag_type='container';
+            else if ( !element.attributes.contenteditable && element.type.toUpperCase() != "TEXT" && element.nodeName.toUpperCase() != "TEXTAREA" ) return;
             
             var timeout,
                 lastChange = 0,
                 delay = settings.initial,
                 value = self.val();
+            if ( tag_type !== 'input' ) value=self.text();
             
             function handler(ignore_threshold) {
                 if ( ignore_threshold === undefined ) ignore_threshold = false;
                 
                 lastChange = 0;
                 var nvalue = self.val();
+                if (  tag_type !== 'input'  ) nvalue=self.text();
                 
                 if ( ( !ignore_threshold && nvalue.length < settings.threshold ) || nvalue == value ) return;
                 
@@ -39,7 +43,7 @@
             function check(event) {
                 clearTimeout(timeout);
                 
-                if ( event.keyCode == 13 && this.type.toUpperCase() == "TEXT" ) handler(settings.forceable);
+                if ( event.keyCode == 13 ) handler(settings.forceable);
                 
                 if ( lastChange === 0 ) {
                     lastChange = Date.now();
