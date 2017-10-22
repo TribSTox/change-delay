@@ -21,6 +21,14 @@
 			<ul id="values1"></ul>
 		</div>
 		
+		<div role="main">
+			<h2>Sample Tag with contenteditable attribute</h2>
+			<span id="test2" contenteditable="true">Text</span>
+			
+			<h2>Committed Values</h2>
+			<ul id="values2"></ul>
+		</div>
+		
 		<footer>
 			Copyright © 2012 Alice Bevan-McGregor.  Released under the MIT license.
 		</footer>
@@ -31,6 +39,9 @@
 			$(function(){
 				$('#test1').delay(function(event, value){
 					$('<li>' + value + '</li>').appendTo('#values1');
+				});
+				$('#test2').delay(function(event, value){
+					$('<li>' + value + '</li>').appendTo('#values2');
 				});
 			});
 		</script>
